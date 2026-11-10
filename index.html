@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <!-- 수정 1: 브라우저 탭 제목. 아래 title의 Your Name을 변경하세요. description은 검색엔진용 소개입니다. -->
+  <title>
+   Your Name | Personal Portfolio
+  </title>
+  <meta content="A personal portfolio featuring my background, interests, and projects." name="description"/>
+  <style>
+   /* 디자인 설정: --accent는 강조색, --bg는 배경색입니다. */
+:root {
+--bg:#f7f8fc;
+  --paper:#fff;
+  --ink:#182235;
+  --muted:#536078;
+  --accent:#2455d6;
+  --line:#dce2ee
+}
+* {
+box-sizing:border-box
+}
+html {
+scroll-behavior:smooth;
+  scroll-padding-top:90px
+}
+body {
+margin:0;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:system-ui,'Apple SD Gothic Neo','Nanum Gothic',sans-serif;
+  line-height:1.75
+}
+a {
+color:var(--accent);
+  text-underline-offset:4px
+}
+a:focus-visible {
+outline:3px solid var(--accent);
+  outline-offset:5px
+}
+.wrap {
+width:min(1060px,calc(100% - 40px));
+  margin:auto
+}
+header {
+background:var(--bg);
+  border-bottom:1px solid var(--line)
+}
+.nav {
+display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:20px;
+  min-height:80px
+}
+.brand {
+font-size:19px;
+  font-weight:800;
+  text-decoration:none;
+  color:var(--ink)
+}
+nav {
+display:flex;
+  gap:24px
+}
+nav a {
+font-size:14px;
+  color:var(--muted);
+  text-decoration:none
+}
+.hero > div:first-child {
+grid-column:2;
+  grid-row:1
+}
+.hero {
+display:grid;
+  grid-template-columns:1fr 1.45fr;
+  gap:60px;
+  align-items:center;
+  padding:100px 0 90px
+}
+.eyebrow {
+color:var(--accent);
+  font-size:12px;
+  letter-spacing:.16em;
+  font-weight:800
+}
+h1 {
+font-size:clamp(36px,5.2vw,60px);
+  line-height:1.25;
+  letter-spacing:-.055em;
+  margin:20px 0 24px
+}
+h1 span {
+color:var(--accent)
+}
+.lead {
+color:var(--muted);
+  max-width:490px;
+  font-size:17px
+}
+.button {
+display:inline-block;
+  background:var(--accent);
+  color:white;
+  border-radius:10px;
+  padding:12px 22px;
+  text-decoration:none;
+  font-weight:700;
+  margin-top:20px
+}
+/* 사진 카드: transform: none은 기울기 없음. padding은 안쪽 여백입니다. */
+.profile {
+grid-column:1;
+  grid-row:1;
+  padding:32px;
+  background:#eaf0ff;
+  border:1px solid #d2ddf9;
+  border-radius:24px;
+  transform:none
+}
+.avatar {
+height:90px;
+  width:90px;
+  border-radius:24px;
+  background:var(--accent);
+  color:white;
+  display:grid;
+  place-items:center;
+  font-size:32px;
+  font-weight:800
+}
+.profile h2 {
+font-size:24px;
+  margin:22px 0 4px
+}
+.profile p {
+color:var(--muted);
+  margin:0
+}
+.tags {
+display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:24px
+}
+.tag {
+background:white;
+  border:1px solid var(--line);
+  border-radius:6px;
+  padding:3px 10px;
+  font-size:12px;
+  color:var(--muted)
+}
+section {
+padding:55px 0;
+  border-top:1px solid var(--line)
+}
+.section-head {
+display:flex;
+  align-items:baseline;
+  gap:16px;
+  margin-bottom:24px
+}
+.num {
+font-size:12px;
+  font-weight:800;
+  color:var(--accent)
+}
+h2 {
+font-size:28px;
+  letter-spacing:-.035em;
+  margin:0
+}
+h3 {
+font-size:20px;
+  margin:14px 0 10px
+}
+p {
+margin:0 0 14px
+}
+.about {
+display:grid;
+  grid-template-columns:1.3fr 1fr;
+  gap:40px
+}
+.copy {
+color:var(--muted)
+}
+.note {
+border-left:3px solid var(--accent);
+  padding-left:20px;
+  color:var(--muted)
+}
+.grid {
+display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:20px
+}
+.card {
+background:var(--paper);
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:28px
+}
+.card p {
+color:var(--muted);
+  font-size:15px
+}
+.label {
+font-size:12px;
+  font-weight:700;
+  color:var(--accent)
+}
+.contact {
+background:#eaf0ff;
+  border-radius:20px;
+  padding:36px
+}
+.contact p {
+color:var(--muted);
+  margin-top:12px
+}
+footer {
+padding:30px 0;
+  color:var(--muted);
+  font-size:12px
+}
+.skip {
+position:absolute;
+  left:-9999px
+}
+.skip:focus {
+left:20px;
+  top:10px;
+  background:white;
+  padding:12px;
+  z-index:10
+}
+@media(max-width:700px) {
+.hero {
+grid-template-columns:1fr;
+  padding:56px 0;
+  gap:36px
+}
+.profile {
+transform:none
+}
+.about,.grid {
+grid-template-columns:1fr;
+  gap:20px
+}
+.nav {
+min-height:72px;
+  flex-wrap:wrap;
+  padding:16px 0;
+  gap:10px
+}
+nav {
+gap:16px
+}
+section {
+padding:40px 0
+}
+.contact {
+padding:26px
+}
+.wrap {
+width:calc(100% - 36px)
+}
+
+}
+@media(prefers-reduced-motion:reduce) {
+html {
+scroll-behavior:auto
+}
+
+}
+/* 사진 칸: aspect-ratio는 가로/세로 비율, max-height는 최대 높이입니다. */
+.photo-frame {
+width:100%;
+  aspect-ratio:4/5;
+  max-height:340px;
+  overflow:hidden;
+  border:1px dashed #9aadd6;
+  border-radius:16px;
+  background:#f7f9ff;
+  margin-bottom:22px
+}
+.photo-placeholder {
+height:100%;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  gap:8px;
+  color:var(--muted);
+  text-align:center;
+  padding:24px
+}
+.photo-placeholder strong {
+font-size:22px;
+  color:var(--ink)
+}
+.photo-placeholder small {
+font-size:13px
+}
+/* 실제 사진: cover는 칸을 채우며 일부 잘림, contain은 사진 전체 표시.
+   object-position: center 30%처럼 바꾸면 사진의 표시 위치를 조절합니다. */
+.profile-photo {
+display:block;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center
+}
+.education-list {
+list-style:none;
+  padding:0;
+  margin:0;
+  display:grid;
+  gap:18px
+}
+.education-item {
+display:grid;
+  grid-template-columns:180px minmax(0,1fr);
+  gap:24px;
+  padding:28px;
+  background:var(--paper);
+  border:1px solid var(--line);
+  border-radius:16px
+}
+.education-period {
+font-size:14px;
+  font-weight:700;
+  color:var(--accent)
+}
+.education-item h3 {
+margin:0 0 8px
+}
+.education-item p {
+color:var(--muted);
+  margin:0
+}
+.education-item .education-detail {
+margin-top:10px;
+  font-size:14px
+}
+@media(max-width:700px) {
+.hero > div:first-child {
+grid-column:1;
+  grid-row:2
+}
+.profile {
+grid-column:1;
+  grid-row:1
+}
+.education-item {
+grid-template-columns:1fr;
+  gap:10px
+}
+.photo-frame {
+max-width:280px;
+  margin-inline:auto
+}
+
+}
+.education-block p {
+color:var(--ink);
+  margin:0 0 16px
+}
+.education-block p:last-child {
+margin-bottom:0
+}
+  
+/* 학회·동아리: 한 박스 안에 자유롭게 나열하는 활동 영역입니다. */
+.activities-block p { color: var(--ink); margin: 0 0 16px; }
+.activities-block p:last-child { margin-bottom: 0; }
+/* 작은 화면에서도 상단 메뉴가 여러 줄로 자연스럽게 배치됩니다. */
+nav { flex-wrap: wrap; }
+  /* 약력·걸어온 길: 학력 및 동아리와 동일한 단일 박스 형태입니다. */
+.journey-block p { color: var(--ink); margin: 0 0 16px; }
+.journey-block p:last-child { margin-bottom: 0; }
+/* 사진 표시: 칸을 채우고 얼굴과 상체가 중앙에 오도록 표시합니다.
+   사진을 자르지 않고 전부 보이려면 object-fit: contain으로 변경하세요. */
+.profile-photo { object-fit: cover; object-position: 50% 40%; }
+</style>
+ </head>
+ <body>
+  <a class="skip" href="#main">
+   Skip to content
+  </a>
+  <!-- 상단 메뉴: 보이는 메뉴명은 바꿔도 되지만 href="#about" 등은 연결할 section의 id와 같아야 합니다. -->
+  <header>
+   <div class="wrap nav">
+    <a class="brand" href="#main">
+     Leading of Life and Culture
+    </a>
+    <nav aria-label="Main navigation">
+     <a href="#about">
+      About
+     </a>
+     <a href="#education">
+      Education
+     </a>
+     <a href="#activities">
+      Activities
+     </a>
+          <a href="#journey">Journey</a>
+<a href="#projects">
+      Projects
+     </a>
+     <a href="#contact">
+      Contact
+     </a>
+    </nav>
+   </div>
+  </header>
+  <main class="wrap" id="main">
+   <!-- 이 파일은 편집용 템플릿입니다. 이름, 소개, 관심사와 프로젝트 문구를 본인 내용으로 교체하세요. -->
+   <div class="hero">
+    <div>
+     <div class="eyebrow">
+      PERSONAL PORTFOLIO
+     </div>
+     <!-- 수정 2: 이름과 한 줄 소개 -->
+     <h1>
+      Hello,
+      <br/>
+      I'm
+      <span>
+       Daniel Hwang
+      </span>
+      .
+     </h1>
+     <p class="lead">
+      Welcome to my page. A developer and Baseball Player, Golfer... and anything else.
+     </p>
+     <a class="button" href="#projects">
+      Explore my work
+      <span aria-hidden="true">
+       ↗
+      </span>
+     </a>
+    </div>
+    <aside aria-label="Profile overview" class="profile">
+     <!-- 수정 3: 프로필 사진, 이름, 역할, 관심 키워드. 사진 아래 h2가 이름, p가 역할, tag가 관심 분야입니다. -->
+     <!-- 사진 설정: profile.jpg는 index.html과 같은 위치에 두세요. -->
+     <div class="photo-frame">
+      <!-- 프로필 사진 변경: 같은 폴더의 profile.jpg를 새 사진으로 교체하세요. -->
+      <img class="profile-photo" src="profile.jpg" alt="Portrait of Daniel Hwang" width="1011" height="1024" fetchpriority="high" decoding="async">
+     </div>
+     <h2>
+      Daniel Hwang
+     </h2>
+     <p>
+      Table of interest things
+     </p>
+     <div class="tags">
+      <span class="tag">
+       AI System(LLM, Physical)
+      </span>
+      <span class="tag">
+       Baseball (LG Twins)
+      </span>
+      <span class="tag">
+       Patent and Creation
+      </span>
+     </div>
+    </aside>
+   </div>
+   <!-- 소개 편집: 아래 copy의 p는 본문, note의 strong은 소제목, p는 설명입니다. -->
+   <section id="about">
+    <div class="section-head">
+     <span class="num">
+      01 /
+     </span>
+     <h2>
+      About me
+     </h2>
+    </div>
+    <div class="about">
+     <div class="copy">
+      <p>
+       Hello! I'm student of Electrical and Electric Engineering. I'm teaching Mathematics in Seoul. I'm interesting in Mathematics(Algebra), Mobility, Airplane(Airlines)
+      </p>
+      <p>
+       Recent Work: Participated as a selection assistant for the KAIST IP-CEO program(26.11)
+      </p>
+     </div>
+     <div class="note">
+      <strong>
+       Currently exploring
+      </strong>
+      <p>
+       - Teaching Mathematics
+       - Student Career and College Admission Mentoring and Coaching
+       - Learning Information Engineering Class
+      </p>
+      <strong>
+       Open to conversations about
+      </strong>
+      <p>
+       AI Modeling(LLM, Physics), Invention, Patent, Mathematics, Golf, Baseball
+      </p>
+     </div>
+    </div>
+   </section>
+   <section id="education">
+    <div class="section-head">
+     <span class="num">
+      02 /
+     </span>
+     <h2>
+      Education
+     </h2>
+    </div>
+    <!-- 학력 수정: 아래 한 개의 박스 안에서 p 한 줄을 복사하여 학력을 자유롭게 나열하세요. -->
+    <div class="card education-block">
+     <p>
+      Electrical and Electric Engineering — Inha University(Incheon), 2023 ~
+     </p>
+     <p>
+      Education Institude — KAIST IP-CEO (IP영재기업인교육원), 8th Class (Completed)
+     </p>
+    </div>
+   </section>
+   <!-- 학회·동아리 수정: 아래 하나의 박스 안에서 p 한 줄을 복사하여 참여 활동을 나열하세요. 단체명, 역할, 참여 기간, 활동 내용을 자유롭게 적으면 됩니다. 필요 없는 줄은 삭제하세요. -->
+   <section id="activities">
+    <div class="section-head">
+     <span class="num">
+      03 /
+     </span>
+     <h2>
+      Societies &amp; Clubs
+     </h2>
+    </div>
+    <div class="card activities-block">
+     <p>
+      Global HR Forum(2018) - Seoul, Walkerhill
+     </p>
+     <p>
+      Invention Club, Economics Club, Baseball Club... and else
+     </p>
+    </div>
+   </section>
+   <!-- 약력·걸어온 길 수정: 이 박스 안의 p 한 줄을 복사하여 연도, 경험, 성과를 자유롭게 나열하세요. 아래 문구는 입력 예시 자리이며 본인 내용으로 바꾸면 됩니다. -->
+   <section id="journey">
+    <div class="section-head">
+     <span class="num">04 /</span>
+     <h2>Background &amp; Journey</h2>
+    </div>
+    <div class="card journey-block">
+     <p>Teaching Mathematics (in Seoul, Yongsan) 2023 ~</p>
+     <p>Student Career and College Admission Mentoring and Coaching (달꿈) 2023 ~</p>
+     <p>LG Twins Baseball Team Fan 2007 ~</p>
+     <p>File a patent</p>
+    </div>
+   </section>
+
+   <section id="projects">
+    <div class="section-head">
+     <span class="num">
+      05 /
+     </span>
+     <h2>
+      Selected projects
+     </h2>
+    </div>
+    <!-- 프로젝트 추가: article class="card"부터 해당 /article까지 한 묶음을 복사하세요. h3는 제목, p는 설명, tag는 키워드입니다. -->
+    <!-- 수정 4: 프로젝트 제목·설명·키워드. 공개 주소가 있다면 설명 아래에 a 링크를 추가하세요. -->
+    <div class="grid">
+     <article class="card">
+      <span class="label">
+       PROJECT 01
+      </span>
+      <h3>
+       Patent application
+      </h3>
+      <p>
+       Filed more than give patents/still in the process (with KAIST IP-CEO)
+      </p>
+      <div class="tags">
+       <span class="tag">
+        With KAIST CCE
+       </span>
+       <span class="tag">
+        2017 ~
+       </span>
+      </div>
+     </article>
+     <article class="card">
+      <span class="label">
+       PROJECT 02
+      </span>
+      <h3>
+       AI Sports Modeling
+      </h3>
+      <p>
+       Share what you created and what you learned. You can also use this space for an idea you would like to explore.
+      </p>
+      <div class="tags">
+       <span class="tag">
+        With AI Tools (ChatGPT, Claude)
+       </span>
+       <span class="tag">
+        2026~
+       </span>
+      </div>
+     </article>
+    </div>
+   </section>
+   <section id="contact">
+    <div class="section-head">
+     <span class="num">
+      06 /
+     </span>
+     <h2>
+      Contact
+     </h2>
+    </div>
+    <div class="contact">
+     <h3>
+      How about contact with us
+     </h3>
+     <!-- 수정 5: 연락처. 현재 p는 텍스트 표시만 합니다. 클릭 가능하게 하려면 아래 예시처럼 a를 넣으세요.
+<p><a href="https://github.com/yoondyedu">GitHub</a></p>
+<p><a href="mailto:yoondyedu@inha.edu">yoondyedu@inha.edu</a></p>
+개인정보는 신중히 공개하세요. -->
+     <p>
+      https://github.com/yoondyedu
+     </p>
+     <p>
+      yoondyedu@inha.edu
+     </p>
+    </div>
+   </section>
+  </main>
+  <!-- 하단 서명: Your Name을 본인 이름으로 변경하세요. -->
+  <footer class="wrap">
+   © @yoondyedu · A space for my interests and work.
+  </footer>
+ </body>
+</html>
